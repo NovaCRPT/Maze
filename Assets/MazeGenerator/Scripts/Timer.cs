@@ -17,16 +17,23 @@ public class Timer : MonoBehaviour
     {   
         GameOverText.enabled=false;
         startTime = Time.time;
+            ResumeGame();
         
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return)) {
+    {   if (Input.GetKeyDown(KeyCode.Return)) {
 			RestartGame();
 		}
-
+    
+     /*
+        if (Input.GetKeyDown(KeyCode.A)) {
+			PauseGame();
+		}   if (Input.GetKeyDown(KeyCode.B)) {
+			ResumeGame();
+		}
+     */
 		float t = Time.time - startTime;
         string minutes = ((int) t /60).ToString();
         int seconds =  (int)(t % 60);
@@ -39,9 +46,11 @@ public class Timer : MonoBehaviour
         
     }
 
-	private static void RestartGame() {
-		Scene scene = SceneManager.GetActiveScene();
+	 void RestartGame() {
+		this.ResumeGame();
+        Scene scene = SceneManager.GetActiveScene();
 		SceneManager.LoadScene(scene.name);
+       
 	}
 
 	// Update is called once per frame
